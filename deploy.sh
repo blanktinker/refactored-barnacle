@@ -21,15 +21,27 @@ if [ -n "$MODE" ] && [ -n "$BRANCH" ] && [ -n "$MESSAGE" ]; then
   elif [ "$MODE" = "2" ]; then
     printf "What branch are pushing from? "
     read CURRENT
+    printf "Is this your first time deploying to the $BRANCH branch? (y/n) "
+    read DEPLOY
 
-    if [ -n "$CURRENT" ]; then
-      gulp clean
-      gulp build
-      gulp clean:temp
-      git add _dist
-      git commit -m "$MESSAGE"
-      #git subtree push --prefix _dist origin $BRANCH
-      git push origin `git subtree split --prefix=_dist $CURRENT`:$BRANCH --force
+    if [ -n "$CURRENT" ] && [ -n DEPLOY ]; then
+      if [ "$DEPLOY" = "y" ] || [ "$DEPLOY" = "Y" ]; then
+        gulp clean
+        gulp build
+        gulp clean:temp
+        git add _dist
+        git commit -m "$MESSAGE"
+        git subtree push --prefix _dist origin $BRANCH
+      elif [ "$DEPLOY" = "n" ] || [ "$DEPLOY" = "N" ]; then
+        gulp clean
+        gulp build
+        gulp clean:temp
+        git add _dist
+        git commit -m "$MESSAGE"
+        git push origin `git subtree split --prefix=_dist $CURRENT`:$BRANCH --force
+      else
+        echo "Sorry. Invalid Input. Please Try Again."
+      fi
     else
       echo "Sorry. Invalid Input. Please Try Again."
     fi
