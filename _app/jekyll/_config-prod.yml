@@ -1,0 +1,6 @@
+# Site settings
+url: ""                               # the base hostname & protocol for your site
+environment: production               # used to overwrite development mode
+
+# Build settings
+show_drafts: false

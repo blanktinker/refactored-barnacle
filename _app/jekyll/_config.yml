@@ -1,0 +1,24 @@
+# Site settings
+url: ""                               # the base hostname & protocol for your site
+baseurl: ""                           # the subpath of your site, e.g. /blog
+environment: development              # disables production-only segments
+source: _app/jekyll                   # subdirectory for jekyll-related files
+destination: _app/temp                # pre-distribution directory
+
+title: website title goes here
+description: website description goes here
+email: contact email goes here
+twitter_username: twitter handle goes here
+github_username: github account name goes here
+instagram_username: instagram handle goes here
+facebook_page: facebook pages name goes here
+
+# Build settings
+show_drafts: true
+markdown: kramdown
+highlighter: pygments.rb
+
+# Jekyll automatically excludes files with a '.' prefix, e.g. '.gitignore'
+exclude: []
+
+plugins: []
